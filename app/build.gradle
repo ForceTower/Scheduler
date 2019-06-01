@@ -38,4 +38,5 @@ dependencies {
     kapt 'com.google.dagger:dagger-android-processor:2.22.1'
 
     implementation 'com.squareup.okhttp3:okhttp:4.0.0-alpha02'
+    implementation 'com.squareup.retrofit2:retrofit:2.5.0'
 }
