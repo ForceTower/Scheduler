@@ -16,7 +16,7 @@ data class Session(
     val endTime: String,
     val title: String,
     val room: String,
-    val abstract: String,
+    val resume: String,
     @SerializedName("photo_url")
     val picture: String?,
     val type: Int,
