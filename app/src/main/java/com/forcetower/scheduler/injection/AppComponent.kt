@@ -1,7 +1,6 @@
 package com.forcetower.scheduler.injection
 
 import com.forcetower.scheduler.BaseApplication
-import com.forcetower.scheduler.MainActivity
 import dagger.BindsInstance
 import dagger.Component
 import dagger.android.AndroidInjectionModule
@@ -14,7 +13,8 @@ import javax.inject.Singleton
         AndroidInjectionModule::class,
         AndroidSupportInjectionModule::class,
         AppModule::class,
-        ActivityModule::class
+        ActivityModule::class,
+        ViewModelModule::class
     ]
 )
 interface AppComponent {

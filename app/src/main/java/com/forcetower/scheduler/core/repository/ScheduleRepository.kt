@@ -17,15 +17,32 @@ class ScheduleRepository @Inject constructor(
     fun getEvents(): LiveData<List<Session>> {
         executor.execute {
             val call = service.listSessions()
+            println("Elevated")
             try {
                 val response = call.execute()
                 if (response.isSuccessful) {
                     val list = response.body()
+                    println("The network is $list")
                     val corrected = list ?: emptyList()
                     database.session().insert(corrected)
+                } else {
+                    println("The network code ${response.code()}")
                 }
-            } catch (throwable: Throwable) { }
+            } catch (throwable: Throwable) {
+                throwable.printStackTrace()
+            }
         }
         return database.session().getSessions()
+    }
+
+    fun getEventDates(): LiveData<List<Long>> {
+        val data = MutableLiveData<List<Long>>()
+        executor.execute {
+            val sessions = database.session().getSessionsDirect()
+            val list = sessions.distinctBy { it.startTime.dayOfYear }
+                .map { it.startTime.toInstant().epochSecond }
+            data.postValue(list)
+        }
+        return data
     }
 }

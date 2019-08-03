@@ -14,4 +14,7 @@ abstract class SessionDAO {
 
     @Query("SELECT * FROM Session")
     abstract fun getSessions(): LiveData<List<Session>>
+
+    @Query("SELECT * FROM Session")
+    abstract fun getSessionsDirect(): List<Session>
 }
